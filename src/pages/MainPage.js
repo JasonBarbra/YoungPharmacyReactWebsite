@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Typography, makeStyles, Container } from '@material-ui/core';
 import Form from '../components/form';
+import { FirestoreProvider } from 'react-firestore';
 
 const useStyles = makeStyles((theme) => ({
   picture: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainPage = () => {
+const MainPage = (props) => {
   const classes = useStyles();
   return (
     <Container align="center">

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { FirebaseContext } from '../components/Firebase/context';
+import firebase from 'firebase';
 import {
   Button,
   FormControl,
@@ -11,9 +11,7 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 
-const Form = ({ classes }) => {
-  const firebase = useContext(FirebaseContext);
-  console.log(firebase);
+const Form = ({ classes, firestore }) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -22,7 +20,6 @@ const Form = ({ classes }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(firebase);
     const now = new Date();
     const sharer = {
       name: name,
@@ -30,9 +27,12 @@ const Form = ({ classes }) => {
       email: email,
       year: year,
       ismember: member,
-      send_at: firebase.firestore.Timestamp.fromDate(now),
+      send_at: firebase.firestore.TimeStamp.fromDate(now),
     };
     console.log(sharer);
+
+    const db = firebase.firestore();
+    db.collection('webinar3').add(sharer);
   };
 
   return (

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import FirebaseContextProvider from './components/Firebase/context';
 import firebase from 'firebase';
 
 const firebaseConfig = {
@@ -13,7 +12,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MessagingSenderId,
   appId: process.env.REACT_APP_AppId,
 };
-
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
